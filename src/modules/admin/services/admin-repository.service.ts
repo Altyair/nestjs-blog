@@ -1,22 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { AdminModel } from "../models/admin.model";
+import { Admin } from "../models/admin.entity";
 
 @Injectable()
 export class AdminRepositoryService {
-    private readonly admins: AdminModel[];
+    private readonly admins: Admin[];
 
     constructor() {
-        this.admins = [
-            {
-                id: '1',
-                login: 'damir',
-                password: '123'
-            }
-        ];
+        this.admins = [];
     }
 
+    async find(id: number): Promise<Admin | undefined> {
+        return this.admins.find(admin => admin.id === id);
+    }
 
-    async findByLogin(login: string): Promise<AdminModel | undefined> {
+    async findByLogin(login: string): Promise<Admin | undefined> {
         return this.admins.find(admin => admin.login === login);
     }
 }

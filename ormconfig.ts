@@ -11,7 +11,7 @@ export const dataSourceOptions: DataSourceOptions = {
     bigNumberStrings: true,
     multipleStatements: true,
     logging: true,
-    entities: ['**/*.entity{ .ts,.js}'],
+    entities: ['dist/src/modules/**/models/*.entity{ .ts,.js}'],
     migrations: ['dist/src/modules/**/db/migrations/*{.ts,.js}'],
     migrationsRun: false,
 };
