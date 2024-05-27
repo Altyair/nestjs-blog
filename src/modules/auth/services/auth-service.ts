@@ -1,7 +1,8 @@
 import { Admin } from "../../admin/models/admin.entity";
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
-import {Connection, Repository} from "typeorm";
+import { Connection, Repository } from "typeorm";
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +17,7 @@ export class AuthService {
     async validateAdmin(login: string, pass: string): Promise<Admin | null> {
         const admin: Admin = await this.adminRepository.findOne({where: { login }});
 
-        if (admin && admin.passwordHash === pass) {
+        if (admin && await bcrypt.compare(pass, admin.passwordHash)) {
             const { passwordHash, ...secureAdmin } = admin;
             return secureAdmin;
         }

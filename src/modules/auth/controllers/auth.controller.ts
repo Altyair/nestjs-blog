@@ -1,8 +1,8 @@
 import {Controller, Request, Post, UseGuards, Get} from '@nestjs/common';
 import { AuthService } from "../services/auth-service";
 import { AuthGuard } from "@nestjs/passport";
-import {Connection, Repository} from "typeorm";
-import {Admin} from "../../admin/models/admin.entity";
+import { Connection, Repository } from "typeorm";
+import { Admin } from "../../admin/models/admin.entity";
 
 @Controller('auth')
 export class AuthController {
